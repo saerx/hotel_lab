@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react'
 
 import './App.css';
 
-import { getBookings } from './BookingService'
+import { getBookings, postBooking } from './BookingService'
 import BookingGrid from './BookingGrid'
+import BookingForm from './BookingForm'
 
 
 
@@ -18,11 +19,19 @@ useEffect(() => {
   })
 }, []);
 
+const addBooking = (booking) => {
+  const temp = bookings.map(s => s);
+  temp.push(booking);
+  setBookings(temp);
+}
+
+
   
   return (
    <>
     <h1>Gotel</h1>
     <BookingGrid bookings={bookings}/>
+    <BookingForm addBooking={addBooking}/>
     </>
   );
 }
